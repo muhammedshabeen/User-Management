@@ -10,12 +10,11 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request,"Registration successfully")
-            return redirect('login')
+            return redirect('user_login')
         else:
             for field_name, errors in form.errors.items():
                 for error in errors:
-                    field_label = form.fields[field_name].label or field_name.replace('_', ' ').capitalize()
-                    messages.error(request, f"{field_label}: {error}")
+                    messages.error(request, f"{field_name}: {error}")
     context = {
         "form" : RegistrationForm()
     }
@@ -54,8 +53,7 @@ def profile(request):
         else:
             for field_name, errors in form.errors.items():
                 for error in errors:
-                    field_label = form.fields[field_name].label or field_name.replace('_', ' ').capitalize()
-                    messages.error(request, f"{field_label}: {error}")
+                    messages.error(request, f"{field_name}: {error}")
     context = {
         "form" : ProfileEditForm(instance=user)
     }

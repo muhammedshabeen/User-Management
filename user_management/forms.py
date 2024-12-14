@@ -30,19 +30,9 @@ class RegistrationForm(UserCreationForm):
         cleaned_data = super().clean()
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
-        username = cleaned_data.get('username')
-        address = cleaned_data.get('address')
-        name = cleaned_data.get('name')
 
         if password1 and password2 and password1 != password2:
             raise ValidationError("Passwords do not match.")
-        if not username:
-            raise ValidationError("Username is required")
-        if not address:
-            raise ValidationError("Address is required")
-        if not name:
-            raise ValidationError("Name is required")
-
         return cleaned_data
     
     
@@ -67,17 +57,3 @@ class ProfileEditForm(forms.ModelForm):
         if not email or "@" not in email:
             raise ValidationError("Enter a valid email address.")
         return email
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        username = cleaned_data.get('username')
-        address = cleaned_data.get('address')
-        name = cleaned_data.get('name')
-        if not username:
-            raise ValidationError("Username is required")
-        if not address:
-            raise ValidationError("Address is required")
-        if not name:
-            raise ValidationError("Name is required")
-
-        return cleaned_data
