@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+
+{% block content %}
+
+
+<div class="pd-ltr-20">
+    <div class="row" style="display: flex; justify-content: center; align-items: center;">
+        <h1>Welcome, {{ request.user.username }}</h1>
+    </div>
+</div>
+
+{% endblock %}
