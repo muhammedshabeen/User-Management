@@ -155,3 +155,5 @@ The project uses **PostgreSQL** as the database backend.
 - Use `python manage.py migrate` to create the required tables.
 
 ---
+
+
