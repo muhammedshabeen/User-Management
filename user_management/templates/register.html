@@ -1,3 +1,7 @@
+<!-- 
+	Registration Page: A user-friendly form for new users to create an account, including fields for username, email, name, address, phone number, and 
+	password with client-side validations for enhanced user experience.
+-->
 <!DOCTYPE html>
 <html>
     {% load static %}
@@ -31,19 +35,22 @@
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
+
 <body class="login-page">
 	
 	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
 		<div class="container">
 			<div class="row align-items-center">
-				
+				<!-- Registration Form Box -->
 				<div class="col-md-12 col-lg-12">
 					<div class="login-box bg-white box-shadow border-radius-10">
 						<div class="login-title">
 							<h2 class="text-center text-primary">Register</h2>
 						</div>
+						<!-- Form Start -->
 						<form method="post">
 							{% csrf_token %}
+							<!-- CSRF token for security -->
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Username</label>
@@ -93,6 +100,7 @@
                                     <p id="password_er"></p>
 								</div>
                                 <small id="password_requirements" class="form-text text-muted">
+									<!-- Password Requirements -->
                                     Password must be at least 8 characters long and include at least one special character (e.g., !, @, #, $, etc.),and should not contain your username or related names.
                                 </small><br>
 							</div>
@@ -121,7 +129,7 @@
     <!-- Include Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-
+	<!-- Form Validation Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const password1 = document.getElementById('id_password1');
@@ -129,7 +137,8 @@
             const passwordError = document.getElementById('password_er');
             const email = document.getElementById('id_email');
             const phoneNumber = document.getElementById('id_phone_number');
-        
+			
+			// Password Match Validation
             password2.addEventListener('blur', function () {
                 if (password1.value !== password2.value) {
                     passwordError.textContent = "Passwords do not match.";
@@ -138,7 +147,8 @@
                     passwordError.textContent = "";
                 }
             });
-        
+			
+			// Email Validation
             email.addEventListener('blur', function () {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email.value)) {
@@ -147,7 +157,8 @@
                     email.setCustomValidity("");
                 }
             });
-        
+			
+			// Phone Validation
             phoneNumber.addEventListener('blur', function () {
                 const phoneRegex = /^\d{10}$/; 
                 if (!phoneRegex.test(phoneNumber.value)) {
@@ -156,7 +167,8 @@
                     phoneNumber.setCustomValidity("");
                 }
             });
-        
+			
+			// Prevent Non-Numeric Input in Phone Number
             phoneNumber.addEventListener('input', function () {
                 if (!/^\d*$/.test(phoneNumber.value)) {  
                     phoneNumber.value = phoneNumber.value.replace(/\D/g, '');
@@ -166,6 +178,7 @@
     </script>
         
 
+	<!-- Toastr for Notifications -->
     {% if messages %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
